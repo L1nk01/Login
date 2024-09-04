@@ -17,21 +17,23 @@
             rgba(0, 0, 0, .95) 100%)
 }
 
-body{
+body {
     margin: 0;
     font-family: "JetBrains Mono", monospace;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.form-box{
-    display: grid;
-    grid-template-columns: auto auto;
-    place-content: center;
-    margin-top: 180px;
+.form-box {
+    display: flex;
+    flex-direction: row;
 }
 
-.left-side{
-    background-color:#eae9ce;
+.left-side {
+    background-color: #eae9ce;
     width: 450px;
     height: 600px;
     border-radius: 20px 0 0 20px;
@@ -39,9 +41,9 @@ body{
     z-index: 1;
 }
 
-.right-side{
-    background-color:#855c3b;
-    background-image: url(../public/assets/login.png);
+.right-side {
+    background-color: #855c3b;
+    background-image: url(../assets/login.png);
     background-size: cover;
     background-position: 40%;
     width: 350px;
@@ -54,18 +56,14 @@ body{
 .login {
     height: 100%;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     margin: 0 60px;
 
 }
 
-.login h3 {
-    font-size: 2.5rem;
-    margin: 85px 0 40px 0;
-}
-
-.login p {
+.login label {
     margin: 0;
+    font-size: 1.3rem;
 }
 
 .login input {
@@ -76,33 +74,37 @@ body{
     font-size: 1.1rem;
 }
 
+.login a {
+    font-size: 1rem;
+}
+
 .input {
     border-style: hidden;
 }
 
 .input:hover {
-    border-style:solid;
+    border-style: solid;
     height: 46px;
 }
 
 #username-label {
-    display:flex;
+    display: flex;
     flex-direction: column;
     margin: 10px 0;
 }
 
 #username-label label {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 #password-label {
-    display:flex;
+    display: flex;
     flex-direction: column;
     margin: 20px 0;
 }
 
 #password-label label {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -152,4 +154,41 @@ body{
 .btn:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+#login-header {
+    position: relative;
+    padding: 55px 0 60px 0;
+}
+
+#login-header h1 {
+    margin: 0;
+}
+
+#login-header span {
+    color: #a61b11;
+    position: absolute;
+    bottom: 10px;
+}
+
+.home-container {
+    background-color: #eae9ce;
+    width: 800px;
+    height: 600px;
+    border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.home-container h1 {
+    margin: 0;
+}
+
+.home-container a {
+    margin: 0;
 }

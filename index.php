@@ -1,36 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Login</title>
+<?php
 
-    <link rel="stylesheet" href="./stylesheets/styles.css">
-    <script src="./index.js" defer></script>
-</head>
-<body>
-    <div class="form-box">
-        <div class="left-side">
-            <form class="login">
-                <h3>Login Here</h3>
+include_once __DIR__ . '/includes/User.php';
+include_once __DIR__ . '/includes/UserSession.php';
 
-                <div id="username-label">
-                    <p>Username</p>
-                    <label for="username"></label><input type="text" placeholder="Email" id="username" class="input"></label>
-                </div>
+$userSession = new UserSession();
+$user = new User();
 
-                <div id="password-label">
-                    <p>Password</p>
-                    <label for="password"></label><input type="password" placeholder="Password" id="password" class="input"></label>
-                </div>
+if (isset($_SESSION['user'])) { // there was a session started
+  $user->setUser($userSession->getCurrentUser());
+  include_once __DIR__ . '/public/views/home.php';
+} else if (isset($_POST['username']) && isset($_POST['password'])) {
+  $userField = $_POST['username'];
+  $passwordField = $_POST['password'];
 
-                <button class="login-btn btn">Log In</button>
-            </form> 
-        </div>
+  if ($user->userExists($userField, $passwordField)) { // user logged in
+    $userSession->setCurrentUser($userField);
+    $user->setUser($userField);
 
-        <div class="right-side"></div>
-    </div>
-</body>
-</html>
+    include_once __DIR__ . '/public/views/home.php';
+  } else {
+    $errorLogin = "The username and/or password is wrong.";
+    include_once __DIR__ . '/public/views/login_form.php';
+  }
+} else { // user put wrong password
+  include_once __DIR__ . '/public/views/login_form.php';
+}
